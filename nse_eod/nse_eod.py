@@ -41,18 +41,3 @@ def get_historical_data(symbol, from_date, to_date):
     response = requests.get('https://www1.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp', headers=headers, params=params)
     data_pd = export_data_to_pandas(response.content)
     return data_pd
-
-
-NIFTY=pd.read_csv('ind_nifty200list.csv')
-NIFTYnse=NIFTY['Symbol'].values
-os.system('mkdir -p ../Data/')
-from_date=sys.argv[1]
-to_date=sys.argv[2]
-for comp in NIFTYnse:
-    try:
-        comp_data=get_historical_data(comp, from_date, to_date)
-        comp_data.to_csv('../Data/'+comp+'.csv')
-        print(comp+' done')
-    except:
-        print('couldnt get '+comp)
-
