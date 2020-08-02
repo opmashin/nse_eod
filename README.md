@@ -10,7 +10,7 @@ python setup.py install
 
 ## Usage
 
-Note : Date time has to be in dd-mm-yyyy format.
+Note : Date has to be in dd-mm-yyyy format.
 
 ```python
 >>> import nse_eod
@@ -46,4 +46,7 @@ Note : Date time has to be in dd-mm-yyyy format.
 [490 rows x 15 columns]
 ```
 
+## TODO
 
+* [ ] Support Other instruments.
+* [ ] Support Fetching lists of stock in an index and exchange
