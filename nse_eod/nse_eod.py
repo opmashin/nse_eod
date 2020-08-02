@@ -39,6 +39,28 @@ def download_data_from_nse(symbol, from_date, to_date):
     response = requests.get('https://www1.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp', headers=headers, params=params)
     return response.content
 
+def get_period_data(symbol, period):
+    headers = {
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0',
+    	    'Accept': '*/*',
+    	    'Accept-Language': 'en-US,en;q=0.5',
+    	    'X-Requested-With': 'XMLHttpRequest',
+    	    'Connection': 'keep-alive',
+    	    'Referer': 'https://www1.nseindia.com/products/content/equities/equities/eq_security.htm',
+        }
+    params = (
+            ('symbol', symbol),
+    	    ('segmentLink', '3'),
+    	    ('symbolCount', '2'),
+    	    ('series', 'EQ'),
+    	    ('dateRange', period),
+    	    ('fromDate', ''),
+    	    ('toDate', ''),
+    	    ('dataType', 'PRICEVOLUMEDELIVERABLE'),
+    	    )
+    response = requests.get('https://www1.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp', headers=headers, params=params)
+    return export_data_to_pandas(response.content)
+
 def get_historical_data(symbol, from_date, to_date):
     from_year = int(from_date.split('-')[-1])
     to_year = int(to_date.split('-')[-1])
