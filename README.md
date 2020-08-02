@@ -10,7 +10,9 @@ python setup.py install
 
 ## Usage
 
-```
+Note : Date time has to be in dd-mm-yyyy format.
+
+```python
 >>> import nse_eod
 >>> nse_eod.get_historical_data('ACC','01-01-2015','01-01-2020')
      "Symbol" "Series"         "Date" "PrevClose" "OpenPrice"  ... "TotalTradedQuantity"      "Turnover" "No.ofTrades" "DeliverableQty" "%DlyQttoTradedQty"
